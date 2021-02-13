@@ -41,6 +41,16 @@ public class Radio {
         this.currentRadioWave = currentRadioWave;
     }
 
+    public int currentRadioWaveUp() {
+        setCurrentRadioWave(currentRadioWave);
+        return ++currentRadioWave;
+    }
+
+    public int currentRadioWaveDown() {
+        setCurrentRadioWave(currentRadioWave);
+        return --currentRadioWave;
+    }
+
 // Radio sound levels
 
     public int getMaxSoundLevel() {
@@ -63,13 +73,20 @@ public class Radio {
         return currentSoundLevel;
     }
 
-    public void setCurrentSoundLevel(int currentSoundLevel) {
+    public void setCurrentSoundLevelUp(int currentSoundLevel) {
+        currentSoundLevel++;
         if (currentSoundLevel > maxSoundLevel) {
             currentSoundLevel = maxSoundLevel;
         }
+        this.currentSoundLevel = currentSoundLevel;
+    }
+
+    public void setCurrentSoundLevelDown(int currentSoundLevel) {
+        currentSoundLevel--;
         if (currentSoundLevel < minSoundLevel) {
             currentSoundLevel = minSoundLevel;
         }
         this.currentSoundLevel = currentSoundLevel;
     }
+
 }
