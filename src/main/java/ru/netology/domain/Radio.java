@@ -72,20 +72,23 @@ public class Radio {
         return currentSoundLevel;
     }
 
-    public void setCurrentSoundLevelUp(int currentSoundLevel) {
-        currentSoundLevel++;
+    public int setCurrentSoundLevel(int currentSoundLevel) {
         if (currentSoundLevel > maxSoundLevel) {
             currentSoundLevel = maxSoundLevel;
         }
-        this.currentSoundLevel = currentSoundLevel;
-    }
-
-    public void setCurrentSoundLevelDown(int currentSoundLevel) {
-        currentSoundLevel--;
         if (currentSoundLevel < minSoundLevel) {
             currentSoundLevel = minSoundLevel;
         }
         this.currentSoundLevel = currentSoundLevel;
+        return currentSoundLevel;
+    }
+
+    public int currentSoundLevelUp() {
+        return setCurrentSoundLevel(currentSoundLevel + 1);
+    }
+
+    public int currentSoundLevelDown() {
+        return setCurrentSoundLevel(currentSoundLevel - 1);
     }
 
 }
