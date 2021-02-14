@@ -2,8 +2,8 @@ package ru.netology.domain;
 
 public class Radio {
     private int maxRadioWave = 9;
-    private int minRadioWave;
-    private int currentRadioWave;
+    private int minRadioWave = 0;
+    private int currentRadioWave = 0;
 
     private int maxSoundLevel = 10;
     private int minSoundLevel;
@@ -31,7 +31,7 @@ public class Radio {
         return currentRadioWave;
     }
 
-    public void setCurrentRadioWave(int currentRadioWave) {
+    public int setCurrentRadioWave(int currentRadioWave) {
         if (currentRadioWave > maxRadioWave) {
             currentRadioWave = minRadioWave;
         }
@@ -39,16 +39,15 @@ public class Radio {
             currentRadioWave = maxRadioWave;
         }
         this.currentRadioWave = currentRadioWave;
+        return currentRadioWave;
     }
 
     public int currentRadioWaveUp() {
-        setCurrentRadioWave(currentRadioWave);
-        return ++currentRadioWave;
+        return setCurrentRadioWave(currentRadioWave + 1);
     }
 
     public int currentRadioWaveDown() {
-        setCurrentRadioWave(currentRadioWave);
-        return --currentRadioWave;
+        return setCurrentRadioWave(currentRadioWave - 1);
     }
 
 // Radio sound levels

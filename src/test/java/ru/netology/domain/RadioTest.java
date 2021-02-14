@@ -8,30 +8,27 @@ class RadioTest {
 
     @Test
     public void validateRadioWaveOverPossible() {
-        assertEquals(0, radio.getCurrentRadioWave());
-        radio.setCurrentRadioWave(10);
+        radio.setCurrentRadioWave(18);
         assertEquals(0, radio.getCurrentRadioWave());
     }
 
     @Test
     public void validateRadioWaveLessPossible() {
-        assertEquals(0, radio.getCurrentRadioWave());
         radio.setCurrentRadioWave(-1);
         assertEquals(9, radio.getCurrentRadioWave());
     }
 
     @Test
     public void currentRadioWaveUp() {
-        assertEquals(0, radio.getCurrentRadioWave());
-        radio.setCurrentRadioWave(5);
-        assertEquals(6, radio.currentRadioWaveUp());
+        radio.setCurrentRadioWave(9);
+        assertEquals(0, radio.currentRadioWaveUp());
     }
+
 
     @Test
     public void currentRadioWaveDown() {
-        assertEquals(0, radio.getCurrentRadioWave());
-        radio.setCurrentRadioWave(3);
-        assertEquals(2, radio.currentRadioWaveDown());
+        radio.setCurrentRadioWave(0);
+        assertEquals(9, radio.currentRadioWaveDown());
     }
 
 // ----------------------------------
