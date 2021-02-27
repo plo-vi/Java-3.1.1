@@ -2,7 +2,8 @@ package ru.netology.lombok;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 
 public class Radio {
     private int maxRadioWave = 9;
@@ -42,6 +43,8 @@ public class Radio {
         this.minRadioWave = minRadioWave;
         this.currentRadioWave = currentRadioWave;
     }
+
+// Get and set logic to know wave
 
     public int setCurrentRadioWave(int currentRadioWave) {
         if (currentRadioWave > maxRadioWave) {
@@ -89,6 +92,8 @@ public class Radio {
         this.id = id;
     }
 
+// Get and set logic to know sound level
+
     public int setCurrentSoundLevel(int currentSoundLevel) {
         if (currentSoundLevel > maxSoundLevel) {
             currentSoundLevel = maxSoundLevel;
@@ -103,7 +108,12 @@ public class Radio {
     public int currentSoundLevelUp() {
         return setCurrentSoundLevel(currentSoundLevel + 1);
     }
+
     public int currentSoundLevelDown() {
         return setCurrentSoundLevel(currentSoundLevel - 1);
     }
+
+
+// get and set logic to know name and id
+
 }
