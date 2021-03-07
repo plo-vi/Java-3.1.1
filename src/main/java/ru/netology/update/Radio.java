@@ -1,169 +1,97 @@
 package ru.netology.update;
 
 public class Radio {
-    private int maxRadioWave = 9;
-    private int minRadioWave = 0;
-    private int currentRadioWave = 0;
-
-    private int maxSoundLevel = 10;
-    private int minSoundLevel;
+    private int currentRadioWave;
     private int currentSoundLevel;
 
-    private String name;
-    private int id;
+    private final int minRadioWave = 0;
+    private int numberStation = 10;
+    private int maxRadioWave = 9;
 
-// Radio waves
+    private final int maxSoundLevel = 100;
+    private final int minSoundLevel = 0;
 
-    public Radio(int maxRadioWave, String name) {
-        this.maxRadioWave = maxRadioWave;
-        this.name = name;
+    public Radio(int numberStation) {
+        this.numberStation = numberStation;
+        this.maxRadioWave = numberStation - 1;
     }
 
-    public Radio(int maxRadioWave, int minRadioWave, String name) {
-        this.maxRadioWave = maxRadioWave;
-        this.minRadioWave = minRadioWave;
-        this.name = name;
+    // make getter and setter
+    public int getCurrentRadioWave () {
+        return currentRadioWave ;
     }
 
-    public Radio(int maxRadioWave, int minRadioWave, int currentRadioWave, String name) {
-        this.maxRadioWave = maxRadioWave;
-        this.minRadioWave = minRadioWave;
-        this.currentRadioWave = currentRadioWave;
-        this.name = name;
-    }
-
-    public Radio(String name, int maxRadioWave, int minRadioWave, int currentRadioWave) {
-        this.name = name;
-        this.maxRadioWave = maxRadioWave;
-        this.minRadioWave = minRadioWave;
-        this.currentRadioWave = currentRadioWave;
-    }
-
-// Get and set logic to know wave
-
-    public int getMaxRadioWave() {
-        return maxRadioWave;
-    }
-
-    public void setMaxRadioWave(int maxRadioWave) {
-        this.maxRadioWave = maxRadioWave;
-    }
-
-    public int getMinRadioWave() {
-        return minRadioWave;
-    }
-
-    public void setMinRadioWave(int minRadioWave) {
-        this.minRadioWave = minRadioWave;
-    }
-
-    public int getCurrentRadioWave() {
-        return currentRadioWave;
-    }
-
-    public int setCurrentRadioWave(int currentRadioWave) {
+    public void setCurrentStation(int currentRadioWave ) {
         if (currentRadioWave > maxRadioWave) {
-            currentRadioWave = minRadioWave;
+            return;
         }
         if (currentRadioWave < minRadioWave) {
-            currentRadioWave = maxRadioWave;
+            return;
         }
         this.currentRadioWave = currentRadioWave;
-        return currentRadioWave;
-    }
-
-    public int currentRadioWaveUp() {
-        return setCurrentRadioWave(currentRadioWave + 1);
-    }
-
-    public int currentRadioWaveDown() {
-        return setCurrentRadioWave(currentRadioWave - 1);
-    }
-
-// Radio sound levels
-
-    public Radio(int maxSoundLevel, int id) {
-        this.maxSoundLevel = maxSoundLevel;
-        this.id = id;
-    }
-
-    public Radio(int minSoundLevel, String name, int id) {
-        this.minSoundLevel = minSoundLevel;
-        this.name = name;
-        this.id = id;
-    }
-
-    public Radio(int maxSoundLevel, int currentSoundLevel, String name, int id) {
-        this.maxSoundLevel = maxSoundLevel;
-        this.currentSoundLevel = currentSoundLevel;
-        this.name = name;
-        this.id = id;
-    }
-
-    public Radio(int minSoundLevel, String name, int currentSoundLevel, int id) {
-        this.minSoundLevel = minSoundLevel;
-        this.name = name;
-        this.currentSoundLevel = currentSoundLevel;
-        this.id = id;
-    }
-
-// Get and set logic to know sound level
-
-    public int getMaxSoundLevel() {
-        return maxSoundLevel;
-    }
-
-    public void setMaxSoundLevel(int maxSoundLevel) {
-        this.maxSoundLevel = maxSoundLevel;
-    }
-
-    public int getMinSoundLevel() {
-        return minSoundLevel;
-    }
-
-    public void setMinSoundLevel(int minSoundLevel) {
-        this.minSoundLevel = minSoundLevel;
     }
 
     public int getCurrentSoundLevel() {
         return currentSoundLevel;
     }
 
-    public int setCurrentSoundLevel(int currentSoundLevel) {
+    public void setCurrentSoundLevel(int currentSoundLevel) {
         if (currentSoundLevel > maxSoundLevel) {
-            currentSoundLevel = maxSoundLevel;
+            return;
         }
         if (currentSoundLevel < minSoundLevel) {
-            currentSoundLevel = minSoundLevel;
+            return;
         }
         this.currentSoundLevel = currentSoundLevel;
+    }
+
+    public int getMinRadioWave() {
+        return minRadioWave;
+    }
+
+    public int getNumberStation() {
+        return numberStation;
+    }
+
+    public void setNumberStation(int numberStation) {
+        this.numberStation = numberStation;
+    }
+
+    public int getMaxRadioWave() {
+        return maxRadioWave;
+    }
+
+    public int getMaxSoundLevel() {
+        return maxSoundLevel;
+    }
+
+    public int getMinSoundLevel() {
+        return minSoundLevel;
+    }
+
+    // station control
+    public int nextStation() {
+        currentRadioWave = currentRadioWave < maxRadioWave ? currentRadioWave + 1 : minRadioWave;
+        return currentRadioWave;
+    }
+
+    public int prevStation() {
+        currentRadioWave = currentRadioWave > minRadioWave ? currentRadioWave - 1 : maxRadioWave;
+        return currentRadioWave;
+    }
+
+    // volume control
+    public int increaseVolume() {
+        if (currentSoundLevel < maxSoundLevel) {
+            currentSoundLevel++;
+        }
         return currentSoundLevel;
     }
 
-    public int currentSoundLevelUp() {
-        return setCurrentSoundLevel(currentSoundLevel + 1);
-    }
-
-    public int currentSoundLevelDown() {
-        return setCurrentSoundLevel(currentSoundLevel - 1);
-    }
-
-
-// get and set logic to know name and id
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public int decreaseVolume() {
+        if (currentSoundLevel > minSoundLevel) {
+            currentSoundLevel--;
+        }
+        return currentSoundLevel;
     }
 }
