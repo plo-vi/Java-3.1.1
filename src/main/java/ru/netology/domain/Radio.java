@@ -1,94 +1,109 @@
 package ru.netology.domain;
 
 public class Radio {
-    private int maxRadioWave = 9;
-    private int minRadioWave = 0;
-    private int currentRadioWave = 0;
+    private int currentStation;
+    private int currentVolume;
+    private final int minStation = 0;
+    private int numberStation = 10;
+    private int maxStation = 9;
+    private final int maxVolume = 100;
+    private final int minVolume = 0;
 
-    private int maxSoundLevel = 10;
-    private int minSoundLevel;
-    private int currentSoundLevel;
-
-// Radio waves
-
-    public int getMaxRadioWave() {
-        return maxRadioWave;
+    public Radio(int numberStation) {
+        this.numberStation = numberStation;
+        this.maxStation = numberStation - 1;
     }
 
-    public void setMaxRadioWave(int maxRadioWave) {
-        this.maxRadioWave = maxRadioWave;
+    public Radio(int currentStation, int currentVolume, int numberStation, int maxStation) {
+        this.currentStation = currentStation;
+        this.currentVolume = currentVolume;
+        this.numberStation = numberStation;
+        this.maxStation = maxStation;
     }
 
-    public int getMinRadioWave() {
-        return minRadioWave;
+    public Radio() {
     }
 
-    public void setMinRadioWave(int minRadioWave) {
-        this.minRadioWave = minRadioWave;
+    public int getMinStation() {
+        return minStation;
     }
 
-    public int getCurrentRadioWave() {
-        return currentRadioWave;
+    public int getNumberStation() {
+        return numberStation;
     }
 
-    public int setCurrentRadioWave(int currentRadioWave) {
-        if (currentRadioWave > maxRadioWave) {
-            currentRadioWave = minRadioWave;
+    public void setNumberStation(int numberStation) {
+        this.numberStation = numberStation;
+    }
+
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public void setMaxStation(int maxStation) {
+        this.maxStation = maxStation;
+    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+    // make getter and setter
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public void setCurrentStation(int currentStation) {
+        if (currentStation > maxStation) {
+            return;
         }
-        if (currentRadioWave < minRadioWave) {
-            currentRadioWave = maxRadioWave;
+        if (currentStation < minStation) {
+            return;
         }
-        this.currentRadioWave = currentRadioWave;
-        return currentRadioWave;
+        this.currentStation = currentStation;
     }
 
-    public int currentRadioWaveUp() {
-        return setCurrentRadioWave(currentRadioWave + 1);
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
-    public int currentRadioWaveDown() {
-        return setCurrentRadioWave(currentRadioWave - 1);
-    }
-
-// Radio sound levels
-
-    public int getMaxSoundLevel() {
-        return maxSoundLevel;
-    }
-
-    public void setMaxSoundLevel(int maxSoundLevel) {
-        this.maxSoundLevel = maxSoundLevel;
-    }
-
-    public int getMinSoundLevel() {
-        return minSoundLevel;
-    }
-
-    public void setMinSoundLevel(int minSoundLevel) {
-        this.minSoundLevel = minSoundLevel;
-    }
-
-    public int getCurrentSoundLevel() {
-        return currentSoundLevel;
-    }
-
-    public int setCurrentSoundLevel(int currentSoundLevel) {
-        if (currentSoundLevel > maxSoundLevel) {
-            currentSoundLevel = maxSoundLevel;
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            return;
         }
-        if (currentSoundLevel < minSoundLevel) {
-            currentSoundLevel = minSoundLevel;
+        if (currentVolume < minVolume) {
+            return;
         }
-        this.currentSoundLevel = currentSoundLevel;
-        return currentSoundLevel;
+        this.currentVolume = currentVolume;
     }
 
-    public int currentSoundLevelUp() {
-        return setCurrentSoundLevel(currentSoundLevel + 1);
+    // station control
+    public int nextStation() {
+        currentStation = currentStation < maxStation ? currentStation + 1 : minStation;
+        return currentStation;
     }
 
-    public int currentSoundLevelDown() {
-        return setCurrentSoundLevel(currentSoundLevel - 1);
+    public int prevStation() {
+        currentStation = currentStation > minStation ? currentStation - 1 : maxStation;
+        return currentStation;
     }
 
+    // volume control
+    public int increaseVolume() {
+        if (currentVolume < maxVolume) {
+            currentVolume++;
+        }
+        return currentVolume;
+    }
+
+    public int decreaseVolume() {
+        if (currentVolume > minVolume) {
+            currentVolume--;
+        }
+        return currentVolume;
+    }
 }
